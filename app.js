@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
@@ -6,7 +7,7 @@ const taskRoutes = require("./routes/tasks");
 
 const app = express();
 
-mongoose.connect("mongodb://root:example@localhost:27017/todo_app?authSource=admin", {
+mongoose.connect(`mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@localhost:27017/todo_app?authSource=admin`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log("✅ Conectado a MongoDB local"))
