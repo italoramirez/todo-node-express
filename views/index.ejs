@@ -1,0 +1,20 @@
+
+<h1>Lista de Tareas</h1>
+<form action="/add" method="POST">
+  <input type="text" name="title" placeholder="Nueva tarea" required />
+  <button type="submit">Agregar</button>
+</form>
+<ul>
+  <% tasks.forEach(task => { %>
+    <li>
+      <% if (task.done) { %>
+        <s><%= task.title %></s>
+      <% } else { %>
+        <%= task.title %>
+        <form action="/done/<%= task._id %>" method="POST" style="display:inline;">
+          <button>✔</button>
+        </form>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
